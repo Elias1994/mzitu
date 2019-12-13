@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class MzituSpiderApplication {
+public class ProxySpiderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MzituSpiderApplication.class, args);
+		SpringApplication.run(ProxySpiderApplication.class, args);
 	}
 
 }

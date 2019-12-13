@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: proxy
+      database: proxy
+      host: 59.110.159.173
+      port: 27101
+      username: proxy
+      password: proxy191211???
+proxy:
+  spider: true
+  test: true 
