@@ -16,8 +16,8 @@ import org.springframework.stereotype.Component;
 
 import com.elias.common.entity.ImageInfo;
 import com.elias.common.entity.SpiderLog;
-import com.elias.common.repository.ImageInfoRepository;
 import com.elias.common.repository.SpiderLogRepository;
+import com.elias.spider.service.SpiderService;
 import com.elias.spider.spider.HomePageableSpider;
 import com.elias.spider.spider.ImageGroupSpider;
 import com.elias.spider.spider.IncrementSpider;
@@ -25,7 +25,7 @@ import com.elias.spider.spider.IncrementSpider;
 @Component
 public class Scheduler implements CommandLineRunner {
 	@Autowired
-	private ImageInfoRepository iiRep;
+	private SpiderService spiderSer;
 	@Autowired
 	private SpiderLogRepository slRep;
 	@Value("${spider.init}")
@@ -50,7 +50,7 @@ public class Scheduler implements CommandLineRunner {
 				Integer index = Integer.valueOf(indexStr);
 
 				List<ImageInfo> infos = ImageGroupSpider.getImageUrls(index);
-				iiRep.insert(infos);
+				spiderSer.insertAll(infos);
 			}
 		}
 		logger.info("初始化数据爬虫结束。。。。");
@@ -76,7 +76,7 @@ public class Scheduler implements CommandLineRunner {
 				Integer index = Integer.valueOf(indexStr);
 
 				List<ImageInfo> infos = ImageGroupSpider.getImageUrls(index);
-				iiRep.saveAll(infos);
+				spiderSer.insertAll(infos);
 			}
 			SpiderLog log = new SpiderLog(null, new Date(), groupUrls.size());
 			slRep.save(log);

@@ -10,4 +10,4 @@ spring:
       
 spider:
   init: false
-  increment: true
+  increment: false

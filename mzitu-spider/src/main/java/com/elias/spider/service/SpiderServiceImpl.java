@@ -1,14 +1,15 @@
-package com.elias.spider.schduler;
+package com.elias.spider.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.elias.common.entity.ImageInfo;
 import com.elias.common.repository.ImageInfoRepository;
-import com.elias.spider.service.SpiderService;
 
+@Service
 public class SpiderServiceImpl implements SpiderService {
 	@Autowired
 	private ImageInfoRepository iip;
