@@ -22,20 +22,22 @@ public class FileUtil {
 			throw new Exception("目标地址是空值！");
 		}
 
-		// 如果是windows系统路径，判断盘符是否存在
+		File file = new File(filePath);
+
+		if (file.exists() && file.isDirectory()) {// 如果已存在文件夹，直接结束
+			return;
+		}
 		if (filePath.indexOf(":") == 1) {
 			File disk = new File(filePath.substring(0, 3));
 			if (!disk.exists()) {
 				throw new Exception("目标盘符不存在(" + filePath.substring(0, 3) + ")");
 			}
 		}
-		File file = new File(filePath);
-
-		if (file.exists() && file.isDirectory()) {// 如果已存在文件夹，直接结束
-			return;
-		} else if (file.exists() && !file.isDirectory()) {// 如果已存在，但不是文件夹，异常
+		if (file.exists() && !file.isDirectory()) {// 如果已存在，但不是文件夹，异常
 			throw new Exception("目标地址已存在且不是文件夹(" + filePath + ")");
 		} else if (!file.exists()) {// 如果不存在
+			// 如果是windows系统路径，判断盘符是否存在
+
 			// 先创建父目录
 			initSavePath(file.getParent());
 			// 再创建文件夹
@@ -61,12 +63,12 @@ public class FileUtil {
 		con.setReadTimeout(20 * 1000);
 		// 添加一些请求头参数，避免被反爬
 		con.setRequestProperty("User-Agent", ToolsUtil.getUserAgent());
-		con.setRequestProperty("Referer", referer);
+		con.setRequestProperty("Referer", "mzitu.com");
 		// 输入流
 		InputStream is = con.getInputStream();
 
 		// 10K的数据缓冲
-		byte[] bs = new byte[10240];
+		byte[] bs = new byte[1024];
 		// 读取到的数据长度
 		int len;
 		// 输出的文件流
