@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      authentication-database: mzitu
+      database: mzitu
+      host: 59.110.159.173
+      port: 27101
+      username: mzitu
+      password: mzitu191211!!!
+
+savePath: G:/mzitu/
+key: 17343122934
+secret: coco1994
+pageSize: 100
